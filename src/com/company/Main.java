@@ -1,10 +1,12 @@
 package com.company;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import java.io.*;
 public class Main {
@@ -19,7 +21,9 @@ public class Main {
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
         HttpResponse response = httpclient.execute(httpPost);
+        HttpEntity entity = response.getEntity();
+
+        System.out.println(EntityUtils.toString(entity));
         System.out.println(response.getStatusLine());
-        System.out.println(response.getEntity().getContent());
     }
 }
