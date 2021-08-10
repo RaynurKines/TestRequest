@@ -26,15 +26,16 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
 
-        Status status = null;
+
+
         //Creating the dog
         Pet pet = createPet();
 
         ObjectMapper mapper = new ObjectMapper();
 
         //POST creating the dog
+        CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost postCreate = new HttpPost("https://petstore.swagger.io/v2/pet");
 
         StringEntity stringEntity = new StringEntity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pet));
